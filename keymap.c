@@ -28,7 +28,7 @@ enum layers {
   _QWERTY,
   _GAMING,
   _NUMPAD,
-  _SCI,
+  _GREEK,
   _LOWER,
   _RAISE,
   _FUNC,
