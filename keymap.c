@@ -15,11 +15,9 @@
  */
 
 /* TODO:
- * - Improve positions of symbols ([re]move numpad?)
- * - ISO support
+ * - ISO symbol support
  * - vim-like layer with leader keys?
- * - Figure out license/copyright
- * 
+ * - Greek layer (LaTeX macros or unicode?)
  */
 
 #include QMK_KEYBOARD_H
@@ -27,7 +25,6 @@
 enum layers {
   _QWERTY,
   _GAMING,
-  _NUMPAD,
   _GREEK,
   _LOWER,
   _RAISE,
@@ -36,8 +33,8 @@ enum layers {
   _NAV
 };
 
-#define LOWER LT(_LOWER, KC_BSPC)
-#define RAISE LT(_RAISE, KC_ENT)
+#define LOWER MO(_LOWER)
+#define RAISE MO(_RAISE)
 #define FUNC MO(_FUNC)
 #define SPACE LT(_NAV, KC_SPC)
 
@@ -77,24 +74,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_ESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,       KC_K,    KC_L,  KC_SCLN, KC_QUOT,
     KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM,  KC_DOT,  KC_SLSH, KC_SFTENT,
     KC_LCTL, KC_LGUI, KC_LALT, FUNC,    MO(_LOWER), KC_SPC,  MO(_RAISE),    KC_LEFT, KC_DOWN,    KC_UP, KC_RGHT
-),
-
-/* Numpad
- * ,-----------------------------------------------------------------------------------.
- * |      |      |      |      |      |      |      |   7  |   8  |   9  |      |      |
- * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |      |      |   4  |   5  |   6  |      |      |
- * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |      |      |   1  |   2  |   3  |      |      |
- * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |             |      |   0  |   .  |      |      |
- * `-----------------------------------------------------------------------------------'
- */
-[_NUMPAD] = LAYOUT_planck_mit(
-    _______, _______, _______, _______, _______, _______, _______,    KC_7,    KC_8,    KC_9, _______, _______,
-    _______, _______, _______, _______, _______, _______, _______,    KC_4,    KC_5,    KC_6, _______, _______,
-    _______, _______, _______, _______, _______, _______, _______,    KC_1,    KC_2,    KC_3, _______, _______,
-    _______, _______, _______, _______, _______, _______,          _______,    KC_0,  KC_DOT, _______, _______
 ),
 
 /* Greek
@@ -151,11 +130,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, _______, _______, _______, _______, _______, _______,    KC_0,  KC_DOT, _______, _______
 ),
 
-/* Nav (hold space)
+/* Nav with mouse controls (hold space)
  * ,-----------------------------------------------------------------------------------.
- * |      |      |  Up  |      | PgUp |      |      |      |      |      |      |      |
+ * |      |      |  Up  |      | PgUp |      | PgUp | LClk | MS U | RClk |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      | Left | Down | Right| PgDn |      | Left | Down |  Up  | Right|      |      |
+ * |      | Left | Down | Right| PgDn |      | PgDn | MS L | MS D | MS R |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |      |      |      |      |      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
@@ -163,8 +142,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_NAV] = LAYOUT_planck_mit(
-    _______, _______, KC_UP, _______, KC_PGUP, _______, _______, _______,  _______,  _______, _______, _______,
-    _______, KC_LEFT, KC_DOWN, KC_RIGHT, KC_PGDN, _______, KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, _______, _______,
+    _______, _______, KC_UP, _______, KC_PGUP, _______, KC_PGUP, KC_BTN1,  KC_MS_U,  KC_BTN2, _______, _______,
+    _______, KC_LEFT, KC_DOWN, KC_RIGHT, KC_PGDN, _______, KC_PGDN, KC_MS_L, KC_MS_D, KC_MS_R, _______, _______,
     _______, _______, _______, _______, _______, _______, _______, _______,  _______,  _______, _______, _______,
     _______, _______, _______, _______, _______, _______, _______, _______,  _______, _______, _______
 ),
