@@ -1,3 +1,5 @@
+_AS ALWAYS, THIS KEYMAP AND ANY RELATED CONFIG FILES ARE A WORK IN PROGRESS. Use them at your own risk._
+
 # KPRepublic BM40
 ![image](https://user-images.githubusercontent.com/8906201/157449440-0f893c62-1855-49d2-a4c1-77f55d37a1f5.png)
 _Revision 1.0_
