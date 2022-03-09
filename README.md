@@ -31,4 +31,4 @@ This keyboard is my daily driver:
 - International layer
 - Considering switching navigation layer to a vim layer
 
-![image](https://user-images.githubusercontent.com/8906201/157449370-c0abcc57-7deb-4441-b12a-af25687c7043.png) (cat tax, possibly my favorite picture ever. His name is Shibui, or from the boat he's named after in Japanese: _Shibusa_ - 渋さ)
+![image](https://user-images.githubusercontent.com/8906201/157449370-c0abcc57-7deb-4441-b12a-af25687c7043.png) (cat tax, possibly my favorite picture ever. His name is Shibui, or from the boat he's named after in Japanese: _https://en.wikipedia.org/wiki/Shibui_ - 渋さ)
