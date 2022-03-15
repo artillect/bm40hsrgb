@@ -36,7 +36,31 @@ enum layers {
 #define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)
 #define FUNC MO(_FUNC)
-#define SPACE LT(_NAV, KC_SPC)
+#define SPACE LT(_NAV, DOT_SPC)
+
+// Double tap space to insert period
+// From here: https://www.reddit.com/r/olkb/comments/6t8k44/qmk_tap_dance_with_macro/
+
+// Tap Dance Declarations
+enum {
+  DOT_SPC
+};
+
+// Insert period after double tapping space
+void dot_spc(qk_tap_dance_state_t *state, void *user_data) {
+  switch (state->count) {
+  case 1:
+    register_code(KC_SPC); unregister_code(KC_SPC);
+    break;
+  case 2:
+    register_code(KC_DOT); unregister_code(KC_DOT); register_code(KC_SPC); unregister_code(KC_SPC);
+    break;
+  }
+}
+
+qk_tap_dance_action_t tap_dance_actions[] = {
+  [DOT_SPC] = ACTION_TAP_DANCE_FN (dot_spc)
+};
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -55,7 +79,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,       KC_I,    KC_O,     KC_P, KC_BSPC,
     KC_ESC,  LGUI_T(KC_A), LALT_T(KC_S), LSFT_T(KC_D), LCTL_T(KC_F),    KC_G,    KC_H,    RCTL_T(KC_J), RSFT_T(KC_K), LALT_T(KC_L), RGUI_T(KC_SCLN), KC_QUOT,
     KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM,  KC_DOT,  KC_SLSH, KC_SFTENT,
-    KC_LCTL, KC_LGUI, KC_LALT,  FUNC,  LOWER,           SPACE,   RAISE,    KC_LEFT, KC_DOWN,    KC_UP, KC_RGHT
+    KC_LCTL, KC_LGUI, KC_LALT,  FUNC,  LOWER,      TD(DOT_SPC),   RAISE,    KC_LEFT, KC_DOWN,    KC_UP, KC_RGHT
 ),
 
 /* Gaming
